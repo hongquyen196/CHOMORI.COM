@@ -1,11 +1,9 @@
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 body {
     overflow: hidden;
 }
-
 
 /* FAB Speed Dial*/
 
@@ -15,9 +13,7 @@ body {
 
 .form {
     width: 300px;
-    margin-top: 100px;
 }
-
 
 .bgimg-1 {
     background-image: url("../img/bg/bg.png");
@@ -27,7 +23,7 @@ body {
 }
 
 .bgimg-1:after {
-    content : "";
+    content: "";
     display: block;
     position: absolute;
     top: 0;
@@ -35,7 +31,7 @@ body {
     background-image: url("../img/bg/bg.png");
     width: 100%;
     height: 100%;
-    opacity : 0.2;
+    opacity: 0.2;
     z-index: -1;
 }
 
@@ -59,7 +55,6 @@ body {
 .height70 {
     height: 70%;
 }
-
 
 .width-300 {
     width: 300px;
@@ -87,11 +82,11 @@ md-input-container {
 }
 
 .padding-0 {
-    padding:0px !important;
+    padding: 0px !important;
 }
 
 .padding-20 {
-    padding:20px;
+    padding: 20px;
 }
 
 .padding-top-50 {
@@ -124,38 +119,34 @@ md-card {
     margin: 20px;
     margin-top: 15px;
 }
+
 md-icon.size-50 {
     font-size: 50px;
     height: 55px;
     width: 45px;
 }
 
-md-card-title-text>h4 {
+md-card-title-text > h4 {
     margin-bottom: 0px;
     font-size: inherit;
 }
-md-card-title-text>p{
+
+md-card-title-text > p {
     font-size: 13px;
     color: #888;
 }
 
 /*md-toolbar {*/
-    /*background-color: rgb(255, 255, 255) !important;*/
+/*background-color: rgb(255, 255, 255) !important;*/
 /*}*/
-
 
 md-tabs-wrapper {
     background-color: #f1f4f6 !important;
 }
 
-
-
-
 /*.container-fluid {*/
-    /*background-color: #ffffff !important;*/
+/*background-color: #ffffff !important;*/
 /*}*/
-
-
 
 .overflow-hidden {
     overflow: hidden;
@@ -167,25 +158,26 @@ md-tabs-wrapper {
 }
 
 .fabSpeedDial .text-capitalize {
-    text-transform: capitalize; }
+    text-transform: capitalize;
+}
 
 .fabSpeedDial .md-fab:hover, .fabSpeedDial .md-fab.md-focused {
-    background-color: #000 !important; }
+    background-color: #000 !important;
+}
 
 .fabSpeedDial p.note {
-    font-size: 1.2rem; }
+    font-size: 1.2rem;
+}
 
 .fabSpeedDial .lock-size {
     position: absolute;
 }
-
 
 .avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
 }
-
 
 .btn {
     color: white;
@@ -223,12 +215,15 @@ and (-webkit-min-device-pixel-ratio: 2) {
     md-content.main {
         height: 424px !important;
     }
+
     md-content.tab-body {
         height: 390px !important;
     }
+
     md-card {
         height: auto !important;
     }
+
     .image {
         height: auto !important;
     }
@@ -244,12 +239,15 @@ and (-webkit-min-device-pixel-ratio: 2) {
     md-content.main {
         height: 512px !important;
     }
+
     md-content.tab-body {
         height: 464px !important;
     }
+
     md-card {
         height: auto !important;
     }
+
     .image {
         height: auto !important;
     }
@@ -262,13 +260,12 @@ and (-webkit-min-device-pixel-ratio: 2) {
 /*and (min-device-width: 414px)*/
 /*and (max-device-width: 736px)*/
 /*and (-webkit-min-device-pixel-ratio: 3) {*/
-    /*.main {*/
-        /*height: 612px;*/
-    /*}*/
+/*.main {*/
+/*height: 612px;*/
+/*}*/
 /*}*/
 
 /* ----------- iPhone 6 ----------- */
-
 
 /* ----------- Non-Retina Screens ----------- */
 @media screen
@@ -278,17 +275,19 @@ and (-webkit-min-device-pixel-ratio: 1) {
     md-content.main {
         height: 800px !important;
     }
+
     md-content.tab-body {
         height: 750px !important;
     }
+
     md-card {
         height: auto !important;
     }
+
     .image {
         height: auto !important;
     }
 }
-
 
 md-content.main {
     height: 615px;
@@ -309,7 +308,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 45px;
+    height: 55px;
 }
 
 /* Always set the map height explicitly to define the size of the div

@@ -25,7 +25,7 @@
     <!-- Bootstrap Library-->
     <script src="js/lib/bootstrap.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhhGDyhWo_AVDw8Jze1iVAs8sXxT6FnI" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhhGDyhWo_AVDw8Jze1iVAs8sXxT6FnI"></script>
 
     <!-- Stylesheet Library -->
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
@@ -100,6 +100,7 @@
                                     <md-card-title class="padding-0">
                                         <md-card-title-text>
                                             <h4>{{item.region}}</h4>
+
                                             <p>{{item.content}}</p>
                                         </md-card-title-text>
                                     </md-card-title>
@@ -190,7 +191,7 @@
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
     app.controller('AppCtrl', function ($scope) {
         var map;
-        $scope.initialize = function() {
+        $scope.initialize = function () {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 16,
                 center: new google.maps.LatLng(16.4581519, 107.5961825),
@@ -233,12 +234,6 @@
         });
 
         google.maps.event.addDomListener(window, 'load', $scope.initialize);
-
-
-
-
-
-
 
 
         $scope.goGo = function (page) {

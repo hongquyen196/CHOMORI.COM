@@ -1,107 +1,90 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="../src/site.webmanifest">
-        <link rel="apple-touch-icon" href="../src/icon.png">
-        <!-- Place favicon.ico in the root directory -->
+    <link rel="manifest" href="../src/site.webmanifest">
+    <link rel="apple-touch-icon" href="../src/icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
-        <!-- Angular Material requires Angular.js Libraries -->
-        <script src="js/lib/angular.min.js"></script>
-        <script src="js/lib/angular-animate.min.js"></script>
-        <script src="js/lib/angular-aria.min.js"></script>
-        <script src="js/lib/angular-messages.min.js"></script>
-        <!-- Angular Material Library -->
-        <script src="js/lib/angular-material.min.js"></script>
-        <!-- Jquery Library-->
-        <script src="js/lib/jquery.min.js"></script>
-        <!-- Bootstrap Library-->
-        <script src="js/lib/bootstrap.min.js"></script>
-        <!-- Stylesheet Library -->
-        <link rel="stylesheet" href="css/lib/bootstrap.min.css">
-        <link rel="stylesheet" href="css/lib/angular-material.min.css">
-        <link rel="stylesheet" href="css/lib/font-awesome.min.css">
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        <!-- Add your site or application content here -->
-        <div ng-app="myApp" ng-controller="AppCtrl">
-            <md-toolbar style="background-color: transparent;">
-                <div class="md-toolbar-tools">
-                    <div class="col-2 width-70 padding-0">
-                        <md-button class="md-icon-button md-button md-ink-ripple" ng-click="goGo('start.html')">
-                            <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: black;"></md-icon>
-                        </md-button>
-                    </div>
-                    <div class="col-8 text-center black">
-                        <h3>Tìm kiếm máy giặt</h3>
-                    </div>
-                    <div class="col-2 width text-right">
-                    </div>
-                </div>
-            </md-toolbar>
-            <md-content class="overflow-hidden">
-                <div class="container-fluid height100 width-300">
-                    <div class="text-center padding-20">
-                    <img src="img/logo/magnifyingglass.png">
-                    </div>
-                    <md-input-container class="md-block">
-                        <input ng-model="user.street" type="text" placeholder="Tên đường">
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <input ng-model="user.ward" type="text" placeholder="Tên phường, quận, xã">
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <input ng-model="user.city" type="text" placeholder="Thành phố, tỉnh">
-                    </md-input-container>
-
-                    <div layout="column">
-                        <md-button class="md-raised md-warn btn-radius" ng-click="goGo('washer_nearby.html')">
-                            TÌM KIẾM
-                        </md-button>
-                    </div>
-                </div>
-
-                <!--<div class="signin" style="display: none">-->
-                    <!--<md-input-container class="md-block ">-->
-                        <!--<input ng-model="user.username" type="text" placeholder="Phone or Email">-->
-                    <!--</md-input-container>-->
-                    <!--<md-input-container class="md-block ">-->
-                        <!--<input ng-model="user.password" type="password" placeholder="Password" >-->
-                    <!--</md-input-container>-->
-
-                    <!--<md-button class="md-raised md-warn" style="width: 95%;">SIGN IN</md-button>-->
-                <!--</div>-->
-            </md-content>
-            <div class="text-center padding-20">Made with all <i aria-hidden="true" class="fa fa-heart" style="color:#d55"></i> by <a href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a>
-                <!--Facebook-->
-                <!--<md-button class="btn btn-fb">-->
-                <!--<i class="fa fa-facebook"></i>-->
-                <!--</md-button>-->
-                <!--&lt;!&ndash;Github&ndash;&gt;-->
-                <!--<md-button class="btn btn-git">-->
-                <!--<i class="fa fa-github"></i>-->
-                <!--</md-button>-->
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/angular-aria.min.js"></script>
+    <script src="js/lib/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="js/lib/angular-material.min.js"></script>
+    <!-- Jquery Library-->
+    <script src="js/lib/jquery.min.js"></script>
+    <!-- Bootstrap Library-->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <!-- Stylesheet Library -->
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lib/angular-material.min.css">
+    <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- Add your site or application content here -->
+<div ng-app="myApp" ng-controller="AppCtrl">
+    <md-toolbar style="background-color: transparent;">
+        <div class="md-toolbar-tools">
+            <div class="col-2 width-70 padding-0">
+                <md-button class="md-icon-button md-button md-ink-ripple" ng-click="goGo('start.html')">
+                    <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: black;"></md-icon>
+                </md-button>
+            </div>
+            <div class="col-8 text-center black">
+                <h3>Tìm kiếm máy giặt</h3>
+            </div>
+            <div class="col-2 width text-right">
             </div>
         </div>
+    </md-toolbar>
+    <md-content class="main">
+        <div class="container-fluid height100 width-300">
+            <div class="text-center padding-20">
+                <img src="img/logo/magnifyingglass.png">
+            </div>
+            <md-input-container class="md-block">
+                <input ng-model="user.street" type="text" placeholder="Tên đường">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <input ng-model="user.ward" type="text" placeholder="Tên phường, quận, xã">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <input ng-model="user.city" type="text" placeholder="Thành phố, tỉnh">
+            </md-input-container>
+
+            <div layout="column">
+                <md-button class="md-raised md-warn btn-radius" ng-click="goGo('washer_nearby.html')">
+                    TÌM KIẾM
+                </md-button>
+            </div>
+        </div>
+    </md-content>
+    <footer class="text-center">
+        <p class="margin-8">Made with all <i aria-hidden="true" class="fa fa-heart" style="color:#d55"></i> by <a
+            href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a></p>
+    </footer>
+</div>
 
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
-             var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
-             app.controller('AppCtrl', function($scope) {
-                 $scope.goGo = function(page) {
-                     window.location.href = page;
-                 };
-             });
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+    app.controller('AppCtrl', function ($scope) {
+        $scope.goGo = function (page) {
+            window.location.href = page;
+        };
+    });
 
-        </script>
-    </body>
+</script>
+</body>
 </html>
