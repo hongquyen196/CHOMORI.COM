@@ -190,48 +190,65 @@
 
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
     app.controller('AppCtrl', function ($scope) {
-        var map;
         $scope.initialize = function () {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
+            $scope.map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
                 center: new google.maps.LatLng(16.4581519, 107.5961825),
                 mapTypeId: 'roadmap',
                 scrollwheel: false
 
             });
 
-
+            // Create markers.
+            $scope.features.forEach(function (feature) {
+                var marker = new google.maps.Marker({
+                    position: feature.position,
+                    icon: $scope.icons[feature.type].icon,
+                    map: $scope.map
+                });
+            });
         };
 
-        var features = [
+        $scope.features = [
             {
                 position: new google.maps.LatLng(16.4581519, 107.5961825),
-                type: 'nhatho'
+                type: '24'
             },
             {
                 position: new google.maps.LatLng(16.4549983, 107.6025903),
-                type: 'occho'
+                type: '25'
+            },
+            {
+                position: new google.maps.LatLng(16.4539983, 107.6225903),
+                type: '24'
+            },
+            {
+                position: new google.maps.LatLng(16.4529983, 107.6325903),
+                type: '25'
+            },
+            {
+                position: new google.maps.LatLng(16.4579983, 107.6425903),
+                type: '24'
+            },
+            {
+                position: new google.maps.LatLng(16.4559983, 107.6525903),
+                type: '25'
+            },
+            {
+                position: new google.maps.LatLng(16.4569983, 107.6625903),
+                type: '24'
             }
         ];
 
         //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        var icons = {
-            nhatho: {
-                icon: 'https://cdn4.iconfinder.com/data/icons/thefreeforty/30/thefreeforty_location-48.png'
+        $scope.icons = {
+            24: {
+                icon: './ico/17481343_zS0_icon.ico'
             },
-            occho: {
-                icon: 'https://cdn4.iconfinder.com/data/icons/free-retina-icon-set/60/Dog.png'
+            25: {
+                icon: './ico/17481383_DhC_icon.ico'
             }
         };
-
-        // Create markers.
-        features.forEach(function (feature) {
-            var marker = new google.maps.Marker({
-                position: feature.position,
-                icon: icons[feature.type].icon,
-                map: map
-            });
-        });
 
         google.maps.event.addDomListener(window, 'load', $scope.initialize);
 
