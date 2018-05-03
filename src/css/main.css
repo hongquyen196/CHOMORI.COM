@@ -1,0 +1,320 @@
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body {
+    overflow: hidden;
+}
+
+
+/* FAB Speed Dial*/
+
+.black {
+    color: black;
+}
+
+.form {
+    width: 300px;
+    margin-top: 100px;
+}
+
+
+.bgimg-1 {
+    background-image: url("../img/bg/bg.png");
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+}
+
+.bgimg-1:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../img/bg/bg.png");
+    width: 100%;
+    height: 100%;
+    opacity : 0.2;
+    z-index: -1;
+}
+
+.btn-radius {
+    height: 45px;
+    border-radius: 25px;
+}
+
+.width-70 {
+    width: 70px;
+}
+
+.width-100 {
+    width: 100px;
+}
+
+.height100 {
+    height: 100%;
+}
+
+.height70 {
+    height: 70%;
+}
+
+
+.width-300 {
+    width: 300px;
+}
+
+md-input-container {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+.margin-top-100 {
+    margin-top: 100px;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-8 {
+    margin: 8px;
+}
+
+.padding-0 {
+    padding:0px !important;
+}
+
+.padding-20 {
+    padding:20px;
+}
+
+.padding-top-50 {
+    padding-top: 50px;
+}
+
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+
+.padding-left-30 {
+    padding-left: 30px;
+}
+
+.border-radius-15 {
+    border-radius: 15px;
+}
+
+md-card {
+    margin: 10px;
+    box-shadow: none;
+}
+
+.btn-on-img {
+    position: absolute;
+    margin: 20px;
+    margin-top: 15px;
+}
+md-icon.size-50 {
+    font-size: 50px;
+    height: 55px;
+    width: 45px;
+}
+
+md-card-title-text>h4 {
+    margin-bottom: 0px;
+    font-size: inherit;
+}
+md-card-title-text>p{
+    font-size: 13px;
+    color: #888;
+}
+
+/*md-toolbar {*/
+    /*background-color: rgb(255, 255, 255) !important;*/
+/*}*/
+
+
+md-tabs-wrapper {
+    background-color: #f1f4f6 !important;
+}
+
+
+
+
+/*.container-fluid {*/
+    /*background-color: #ffffff !important;*/
+/*}*/
+
+
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.nearby {
+    overflow: auto !important;
+    height: 100% !important;
+}
+
+.fabSpeedDial .text-capitalize {
+    text-transform: capitalize; }
+
+.fabSpeedDial .md-fab:hover, .fabSpeedDial .md-fab.md-focused {
+    background-color: #000 !important; }
+
+.fabSpeedDial p.note {
+    font-size: 1.2rem; }
+
+.fabSpeedDial .lock-size {
+    position: absolute;
+}
+
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.btn {
+    color: white;
+    border-radius: 20px;
+}
+
+.btn-fb {
+    background-color: #3b5998;
+}
+
+.btn-git {
+    background-color: #333;
+}
+
+.btn-fb-messenger {
+    background-color: #0084ff !important;
+}
+
+.btn-phone {
+    background-color: #50ca33 !important;
+}
+
+.btn-map-marker {
+    background-color: #e74c3c !important;
+}
+
+/*https://freetuts.net/su-dung-media-css-tao-responsive-cho-website-660.html*/
+
+/* ----------- iPhone 4 and 4S ----------- */
+/* Portrait and Landscape */
+@media only screen
+and (max-device-width: 320px)
+and (max-device-height: 480px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    md-content.main {
+        height: 424px !important;
+    }
+    md-content.tab-body {
+        height: 390px !important;
+    }
+    md-card {
+        height: auto !important;
+    }
+    .image {
+        height: auto !important;
+    }
+}
+
+/*!* ----------- iPhone 5 and 5S ----------- *!*/
+
+/* Portrait and Landscape */
+@media only screen
+and (max-device-width: 320px)
+and (max-device-height: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    md-content.main {
+        height: 512px !important;
+    }
+    md-content.tab-body {
+        height: 464px !important;
+    }
+    md-card {
+        height: auto !important;
+    }
+    .image {
+        height: auto !important;
+    }
+}
+
+/*!* ----------- iPhone 6 Plus ----------- *!*/
+
+/* Portrait and Landscape */
+/*@media only screen*/
+/*and (min-device-width: 414px)*/
+/*and (max-device-width: 736px)*/
+/*and (-webkit-min-device-pixel-ratio: 3) {*/
+    /*.main {*/
+        /*height: 612px;*/
+    /*}*/
+/*}*/
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    md-content.main {
+        height: 800px !important;
+    }
+    md-content.tab-body {
+        height: 750px !important;
+    }
+    md-card {
+        height: auto !important;
+    }
+    .image {
+        height: auto !important;
+    }
+}
+
+
+md-content.main {
+    height: 615px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+md-content.tab-body {
+    height: 565px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+}
+
+/* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+#map {
+    height: 100%;
+}
+

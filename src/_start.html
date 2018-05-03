@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/lib/angular-aria.min.js"></script>
+        <script src="js/lib/angular-messages.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="js/lib/angular-material.min.js"></script>
+        <!-- Jquery Library-->
+        <script src="js/lib/jquery.min.js"></script>
+        <!-- Bootstrap Library-->
+        <script src="js/lib/bootstrap.min.js"></script>
+        <!-- Stylesheet Library -->
+        <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+        <link rel="stylesheet" href="css/lib/angular-material.min.css">
+        <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!-- Add your site or application content here -->
+        <div ng-app="myApp" ng-controller="AppCtrl">
+            <md-toolbar style="background-color: transparent;">
+
+            </md-toolbar>
+            <md-content class="overflow-hidden">
+                <div class="container-fluid height100 form">
+                    <div class="text-center padding-left-30">
+                        <img src="img/logo/couple.png">
+                    </div>
+                    <div class="layout-column padding-top-50">
+
+                        <md-button class="md-raised md-button btn-radius" ng-click="goGo('_signup.html')">Đăng ký</md-button>
+                        <md-button class="md-raised md-warn btn-radius margin-top-15" ng-click="goGo('_login.html')">Đăng nhập</md-button>
+                    </div>
+                </div>
+            </md-content>
+            <div class="text-center padding-20">
+                <h5>Ứng dụng chia sẻ máy giặt</h5>
+                <small><i>(Cập nhật lần cuối: 1/5/2018)</i></small>
+                <!--Facebook-->
+                <!--<md-button class="btn btn-fb">-->
+                <!--<i class="fa fa-facebook"></i>-->
+                <!--</md-button>-->
+                <!--&lt;!&ndash;Github&ndash;&gt;-->
+                <!--<md-button class="btn btn-git">-->
+                <!--<i class="fa fa-github"></i>-->
+                <!--</md-button>-->
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+
+             var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+             app.controller('AppCtrl', function($scope) {
+                 $scope.goGo = function(page) {
+                     window.location.href = page;
+                 };
+             });
+        </script>
+    </body>
+</html>

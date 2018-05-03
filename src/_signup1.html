@@ -1,0 +1,117 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+        <!-- Angular Material Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+        <!-- Your application bootstrap  -->
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div ng-app="myApp" ng-controller="AppCtrl" ng-cloak="" class="toolbardemoBasicUsage" >
+            <md-content style="background: white">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <md-button ng-click="show()" aria-label="Go Back">
+                          Go back
+                        </md-button>
+
+                        <md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">Register</md-truncate>
+
+                    </div>
+                </md-toolbar>
+
+                <br/>
+                <div class="container">
+                    <div class="signup clearfix" ng-show="!signin">
+                        <md-input-container class="md-block">
+                            <label>First name</label>
+                            <input ng-model="user.fullname" type="text">
+                        </md-input-container>
+
+                        <md-input-container class="md-block ">
+                            <input ng-model="user.phone" type="text" placeholder="Phone Number">
+                        </md-input-container>
+
+                        <md-input-container class="md-block ">
+                            <!-- Use floating placeholder instead of label -->
+                            <input ng-model="user.email" type="email" placeholder="Email">
+                        </md-input-container>
+
+                        <md-input-container class="md-block ">
+                            <input ng-model="user.password" type="password" placeholder="Password" >
+                        </md-input-container>
+
+                        <md-input-container class="md-block ">
+                            <input ng-model="user.cpassword" type="password" placeholder="Confirm Password" >
+                        </md-input-container>
+                        <div layout="column">
+                            <md-button class="md-raised md-warn">SIGN UP</md-button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="signin" style="display: none">
+                    <md-input-container class="md-block ">
+                        <input ng-model="user.username" type="text" placeholder="Phone or Email">
+                    </md-input-container>
+                    <md-input-container class="md-block ">
+                        <input ng-model="user.password" type="password" placeholder="Password" >
+                    </md-input-container>
+
+                    <md-button class="md-raised md-warn" style="width: 95%;">SIGN IN</md-button>
+                </div>
+            </md-content>
+        </div>
+
+
+        <script type="text/javascript">
+
+             var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+             app.controller('AppCtrl', function($scope) {
+                 $scope.user = {
+                     fullname: '',
+                     phone: '',
+                     email: '',
+                     password: '',
+                     cpassword: '',
+                     donation: 19.99
+                 };
+                 $scope.show = false;
+                 $scope.show = function(){
+                     $(".signup").hide();
+                     $(".signin").show({ direction: "right" }, 1000);
+                    // $(".signin").show(1000);
+                 }
+             });
+        </script>
+    </body>
+</html>
