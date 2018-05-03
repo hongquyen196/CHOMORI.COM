@@ -1,0 +1,135 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="../src/site.webmanifest">
+        <link rel="apple-touch-icon" href="../src/icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/lib/angular-aria.min.js"></script>
+        <script src="js/lib/angular-messages.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="js/lib/angular-material.min.js"></script>
+        <!-- Jquery Library-->
+        <script src="js/lib/jquery.min.js"></script>
+        <!-- Bootstrap Library-->
+        <script src="js/lib/bootstrap.min.js"></script>
+        <!-- Stylesheet Library -->
+        <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+        <link rel="stylesheet" href="css/lib/angular-material.min.css">
+        <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div ng-app="myApp" ng-controller="AppCtrl" ng-cloak="" class="" >
+            <md-toolbar style="background-color: transparent;">
+                <div class="md-toolbar-tools">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8 text-center">
+                        <md-button class="md-icon-button md-button md-ink-ripple" aria-label="a" ng-click="goGo('_start.html')">
+                            <md-icon md-svg-src="img/icons/x.svg"></md-icon>
+                        </md-button>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+            </md-toolbar>
+            <md-content id="map" class="tab-body">
+
+            </md-content>
+
+            <div class="text-center padding-20">Made with all <i aria-hidden="true" class="fa fa-heart" style="color:#d55"></i> by <a href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a></div>
+        </div>
+
+
+        <script type="text/javascript">
+
+             var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+             app.controller('AppCtrl', function($scope) {
+                 $scope.goGo = function(page) {
+                     window.location.href = page;
+                 };
+             });
+        </script>
+
+        <script>
+            var map;
+
+            function initMap() {
+                var latlng = new google.maps.LatLng(16.4581519,107.5961825);
+
+                var myOptions = {
+                    zoom: 15,
+                    disableDefaultUI: true,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: latlng,
+                    minZoom: 15,
+                    maxZoom: 16,
+                    draggable : true
+                };
+
+                map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+                google.maps.event.addListener(map, "zoom_changed", function() {
+                    map.setOptions({
+//                        draggable : map.getZoom() == 16
+                    });
+                });
+
+//                map = new google.maps.Map(document.getElementById('map'), {
+//                    zoom: 16,
+//                    center: new google.maps.LatLng(16.4581519,107.5961825),
+//                    mapTypeId: 'roadmap',
+//                    tap: false
+//                });
+
+                //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+                var icons = {
+                    nhatho: {
+                        icon: 'https://cdn4.iconfinder.com/data/icons/thefreeforty/30/thefreeforty_location-48.png'
+                    },
+                    occho: {
+                        icon: 'https://cdn4.iconfinder.com/data/icons/free-retina-icon-set/60/Dog.png'
+                    }
+                };
+
+                var features = [
+                    {
+                        position: new google.maps.LatLng(16.4581519,107.5961825),
+                        type: 'nhatho'
+                    },
+                    {
+                        position: new google.maps.LatLng(16.4549983,107.6025903),
+                        type: 'occho'
+                    }
+                ];
+
+                // Create markers.
+                features.forEach(function(feature) {
+                    var marker = new google.maps.Marker({
+                        position: feature.position,
+                        icon: icons[feature.type].icon,
+                        map: map
+                    });
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhhGDyhWo_AVDw8Jze1iVAs8sXxT6FnI&callback=initMap">
+        </script>
+    </body>
+</html>

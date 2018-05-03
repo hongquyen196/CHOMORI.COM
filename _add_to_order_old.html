@@ -1,0 +1,307 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="../src/site.webmanifest">
+        <link rel="apple-touch-icon" href="../src/icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/lib/angular-aria.min.js"></script>
+        <script src="js/lib/angular-messages.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="js/lib/angular-material.min.js"></script>
+        <!-- Jquery Library-->
+        <script src="js/lib/jquery.min.js"></script>
+        <!-- Bootstrap Library-->
+        <script src="js/lib/bootstrap.min.js"></script>
+        <!-- Stylesheet Library -->
+        <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+        <link rel="stylesheet" href="css/lib/angular-material.min.css">
+        <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body style="box-sizing: content-box">
+
+        <!-- Add your site or application content here -->
+        <div ng-app="myApp" ng-controller="AppCtrl" style="overflow: hidden;">
+             <div>
+                 <md-toolbar class="position-fixed" style=" width: 100%">
+                    <div class="md-toolbar-tools" >
+                        <div class="col-2 width-70 padding-0">
+                            <!--<a href="_login.html"><img src="ico/menu-bar-48.png" width="25"></i></a>-->
+                            <md-button class="md-icon-button md-button md-ink-ripple hide-gt-sm" ">
+                                <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: rgba(72, 43, 82, 0.87);"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="col-6">
+                        </div>
+                        <div class="col-4 text-right">
+                            <span style="color: black; font-size: large">Toshiba 8 kg</span>
+                        </div>
+                    </div>
+
+                </md-toolbar>
+                <md-content class="text-center" style="top: 4em; height: -webkit-fill-available;">
+                    <div class="container-fluid">
+                        <div class="text-right" style="color: rgb(255,87,34)">20.000 VND</div>
+                        <img src="img/washer/g3.jpg" width="300" height="300" style="border-radius: 50%;">
+                        <div class="margin-top-15">Bạn sẽ đến và giao áo quần cho chủ máy để được giặt với giá tiết kiệm nhất</div>
+                        <div class="margin-top-100 padding-20" layout="column">
+                            <md-button class="md-raised md-warn md-ink-ripple btn-radius">Giặt ngay với máy này</md-button>
+                        </div>
+                    </div>
+                </md-content>
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <script type="text/javascript">
+
+             var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+             app.controller('AppCtrl', function($scope) {
+
+
+
+
+                 this.topDirections = ['left', 'up'];
+                 this.bottomDirections = ['down', 'right'];
+
+                 this.isOpen = false;
+
+                 this.availableModes = ['md-fling', 'md-scale'];
+                 this.selectedMode = 'md-fling';
+
+                 this.availableDirections = ['up', 'down', 'left', 'right'];
+                 this.selectedDirection = 'up';
+
+                 var imagePath = '/GUI/src/tile.png';
+
+
+
+                 $scope.buttonArray = [
+                     {
+                        name: 'Thông tin',
+                        type: 'md-warn'
+                     },
+                     {
+                         name: 'Vị trí',
+                         type: 'md-button'
+                     },
+                     {
+                         name: 'Phản hồi',
+                         type: 'md-button'
+                     }
+                 ];
+                 $scope.idxT = 0;
+                 $scope.clickTab = function (idx) {
+                     $('#tab' + idx).show();
+                     $scope.buttonArray[idx].type = 'md-warn';
+                     if (idx != $scope.idxT) {
+                         $('#tab' + $scope.idxT).hide();
+                         $scope.buttonArray[$scope.idxT].type = 'md-button';
+                     }
+                     $scope.idxT = idx;
+                 };
+                 $scope.imagePath = '/GUI/src/img/washer/g1.jpg';
+                 $scope.imagePath2 = '/GUI/src/img/washer/g2.jpg';
+                 $scope.washer = [
+                     {
+                         image: '/GUI/src/img/washer/g1.jpg',
+                         region: 'Phường An Đông',
+                         city: 'Thừa Thiên Huế',
+                         price: '12.000',
+                         content: 'Máy giặt giá rẻ'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '20.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g1.jpg',
+                         region: 'Phường An Đông',
+                         city: 'Thừa Thiên Huế',
+                         price: '12.000',
+                         content: 'Máy giặt tốt'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g2.jpg',
+                         region: 'Phường An Cựu',
+                         city: 'Thừa Thiên Huế',
+                         price: '15.000',
+                         content: 'Kèm cả sấy',
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g3.jpg',
+                         region: 'Phường Hương Hồ',
+                         city: 'Thừa Thiên Huế',
+                         price: '18.000',
+                         content: 'Giao đồ miễn phí'
+                     },
+                     {
+                         image: '/GUI/src/img/washer/g4.jpg',
+                         region: 'Phường Vĩnh Ninh',
+                         city: 'Thừa Thiên Huế',
+                         price: '29.000',
+                         content: 'Kèm sấy, ủi'
+                     }
+                 ];
+             });
+        </script>
+    </body>
+</html>

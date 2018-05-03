@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="x-ua-compatible" content="ie=edge">-->
+    <title></title>
+    <meta name="description" content="">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+
+    <link rel="manifest" href="../src/site.webmanifest">
+    <link rel="apple-touch-icon" href="../src/icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/angular-aria.min.js"></script>
+    <script src="js/lib/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="js/lib/angular-material.min.js"></script>
+    <!-- Jquery Library-->
+    <script src="js/lib/jquery.min.js"></script>
+    <!-- Bootstrap Library-->
+    <script src="js/lib/bootstrap.min.js"></script>
+
+    <!-- Stylesheet Library -->
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lib/angular-material.min.css">
+    <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="AppCtrl" style="height: 100%;">
+    <md-toolbar style="background-color: transparent;">
+        <div class="md-toolbar-tools">
+            <div class="col-2 width-70 padding-0">
+                <!--<a href="_login.html"><img src="ico/menu-bar-48.png" width="25"></i></a>-->
+                <md-button class="md-icon-button md-button md-ink-ripple hide-gt-sm" ng-click="toggleLeft()">
+                    <img src="ico/menu-bar-48.png" aria-label="menu" width="25">
+                </md-button>
+            </div>
+            <div class="col-8 height100">
+                <md-input-container md-no-float class="md-block height70 margin-8">
+                    <input ng-model="search" placeholder="Tìm kiếm">
+                </md-input-container>
+            </div>
+            <div class="col-2 width-70 padding-0">
+                <md-button class="md-icon-button md-button md-ink-ripple" aria-label="search"
+                           ng-click="goGo('_search_washer.html')">
+                    <md-icon md-svg-src="svg/search24.svg" style="fill: #975aa6;"></md-icon>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-content class="main">
+        <md-tabs>
+            <md-tab md-dynamic-height md-stretch-tabs md-center-tabs id="tab1" aria-controls="tab1-content"
+                    style="position: unset;">
+                <md-tab-label>
+                    <img src="ico/maps-pin.png" width="25">
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="tab-body">
+                        <div id="map" style="height: 100%"></div>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+
+<script>
+
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: new google.maps.LatLng(16.4581519, 107.5961825),
+            mapTypeId: 'roadmap'
+        });
+
+        //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+            nhatho: {
+                icon: 'https://cdn4.iconfinder.com/data/icons/thefreeforty/30/thefreeforty_location-48.png'
+            },
+            occho: {
+                icon: 'https://cdn4.iconfinder.com/data/icons/free-retina-icon-set/60/Dog.png'
+            }
+        };
+
+        var features = [
+            {
+                position: new google.maps.LatLng(16.4581519, 107.5961825),
+                type: 'nhatho'
+            },
+            {
+                position: new google.maps.LatLng(16.4549983, 107.6025903),
+                type: 'occho'
+            }
+        ];
+
+        // Create markers.
+        features.forEach(function (feature) {
+            var marker = new google.maps.Marker({
+                position: feature.position,
+                icon: icons[feature.type].icon,
+                map: map
+            });
+        });
+    }
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
+    app.controller('AppCtrl', function ($scope) {
+    });
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhhGDyhWo_AVDw8Jze1iVAs8sXxT6FnI&callback=initMap">
+</script>
+
+</body>
+</html>
