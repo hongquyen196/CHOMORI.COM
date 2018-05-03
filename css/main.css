@@ -2,7 +2,7 @@
    Author's custom styles
    ========================================================================== */
 body {
-    overflow: hidden;
+    height: auto;
 }
 
 /* FAB Speed Dial*/

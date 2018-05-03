@@ -47,31 +47,28 @@
     </md-toolbar>
     <md-content class="main">
         <div class="container-fluid height100 form">
-            <div class="text-center padding-top-50">
-                <h3></h3>
-            </div>
             <md-input-container class="md-block">
-                <input ng-model="user.fullname" type="text" placeholder="Họ và tên">
+                <input ng-model="user.fullname" type="text" placeholder="Họ và tên" maxlength="45" required>
             </md-input-container>
 
             <md-input-container class="md-block ">
-                <input ng-model="user.phone" type="text" placeholder="Số điện thoại">
+                <input ng-model="user.phone" type="text" placeholder="Số điện thoại" maxlength="15" required>
             </md-input-container>
 
             <md-input-container class="md-block ">
-                <!-- Use floating placeholder instead of label -->
-                <input ng-model="user.email" type="email" placeholder="Email">
+                <input ng-model="user.email" type="email" placeholder="Email" maxlength="45" required>
             </md-input-container>
 
             <md-input-container class="md-block ">
-                <input ng-model="user.password" type="password" placeholder="Mật khẩu">
+                <input ng-model="user.password" type="password" placeholder="Mật khẩu" maxlength="45" required>
             </md-input-container>
 
             <md-input-container class="md-block ">
-                <input ng-model="user.cpassword" type="password" placeholder="Xác nhận mật khẩu">
+                <input ng-model="user.re_password" type="password" placeholder="Xác nhận mật khẩu" maxlength="45"
+                       required>
             </md-input-container>
             <div layout="column">
-                <md-button class="md-raised md-warn btn-radius">
+                <md-button class="md-raised md-warn btn-radius" ng-click="goGo('search_washer.html')">
                     ĐĂNG KÝ
                 </md-button>
             </div>
