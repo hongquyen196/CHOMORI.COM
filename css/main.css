@@ -284,7 +284,7 @@ md-tab-content.ng-scope.md-no-scroll {
 }
 
 md-content.tab-body {
-    /*height: 490px;*/
+    height: 547px;
     /*height: 100%;*/
     overflow: scroll;
 }
