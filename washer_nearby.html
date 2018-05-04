@@ -239,8 +239,7 @@
     app.controller('AppCtrl', function ($scope) {
 
         $scope.direction = "up";
-        $(document).ready(function () {
-            alert("width: " + $(window).width() + ", " + $(document).width());
+        $(window).ready(function () {
             $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
             $scope.direction = $(window).width() < 360 ? "right" : "up";
         });
