@@ -169,6 +169,7 @@ md-tabs-wrapper {
 
 .fabSpeedDial .lock-size {
     position: absolute;
+    top: 0px;
 }
 
 md-card.fabSpeedDial {
