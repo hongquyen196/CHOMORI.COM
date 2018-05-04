@@ -1,9 +1,7 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-body {
-    height: auto;
-}
+
 
 /* FAB Speed Dial*/
 
@@ -173,6 +171,10 @@ md-tabs-wrapper {
     position: absolute;
 }
 
+md-card.fabSpeedDial {
+    position: relative;
+}
+
 .avatar {
     width: 100px;
     height: 100px;
@@ -212,13 +214,6 @@ md-tabs-wrapper {
 and (max-device-width: 320px)
 and (max-device-height: 480px)
 and (-webkit-min-device-pixel-ratio: 2) {
-    md-content.main {
-        height: 424px !important;
-    }
-
-    md-content.tab-body {
-        height: 390px !important;
-    }
 
     md-card {
         height: auto !important;
@@ -236,13 +231,6 @@ and (-webkit-min-device-pixel-ratio: 2) {
 and (max-device-width: 320px)
 and (max-device-height: 568px)
 and (-webkit-min-device-pixel-ratio: 2) {
-    md-content.main {
-        height: 512px !important;
-    }
-
-    md-content.tab-body {
-        height: 464px !important;
-    }
 
     md-card {
         height: auto !important;
@@ -272,14 +260,10 @@ and (-webkit-min-device-pixel-ratio: 2) {
 and (min-device-width: 1200px)
 and (max-device-width: 1600px)
 and (-webkit-min-device-pixel-ratio: 1) {
-    md-content.main {
-        height: 800px !important;
+    body {
+        width: 60%;
+        margin: auto;
     }
-
-    md-content.tab-body {
-        height: 750px !important;
-    }
-
     md-card {
         height: auto !important;
     }
@@ -290,13 +274,19 @@ and (-webkit-min-device-pixel-ratio: 1) {
 }
 
 md-content.main {
-    height: 615px;
+    min-height: 515px;
     overflow: hidden;
     background-color: transparent;
 }
 
+md-tab-content.ng-scope.md-no-scroll {
+    height: 800px;
+}
+
 md-content.tab-body {
-    height: 565px;
+    /*height: 490px;*/
+    /*height: 100%;*/
+    overflow: scroll;
 }
 
 .image {
@@ -317,3 +307,52 @@ footer {
     height: 100%;
 }
 
+
+
+
+
+
+
+/**
+sidenav
+ */
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
