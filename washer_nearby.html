@@ -247,6 +247,9 @@
             "height": "calc(" + $(window).height() + "px - 13%)"
         };
         $scope.direction = $(window).width() < 360 ? "right" : "up";
+
+        alert('"height": "calc(" + ' + $(window).height() + ' + "px - 13%)"  - "width": "' + $(window).width() + '"');
+
 //        });
 //        $(document).resize(function () {
 //            $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
