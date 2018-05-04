@@ -274,7 +274,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
 }
 
 md-content.main {
-    min-height: 515px;
+    min-height: 475px;
     overflow: hidden;
     background-color: transparent;
 }
@@ -284,8 +284,6 @@ md-tab-content.ng-scope.md-no-scroll {
 }
 
 md-content.tab-body {
-    height: 547px;
-    /*height: 100%;*/
     overflow: scroll;
 }
 
