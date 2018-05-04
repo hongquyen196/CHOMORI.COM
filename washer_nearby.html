@@ -237,12 +237,12 @@
 
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
     app.controller('AppCtrl', function ($scope, $window) {
-
+        //heidht = 511, width =
 //        $scope.direction = "up";
 //        $(document).ready(function () {
 //        $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
 //        angular.element(document.querySelector("md-content.tab-body"));
-        alert($window.innerHeight + ", " + $(window).height());
+        alert($window.innerHeight + ", " + $window.innerWidth);
         $scope.setStyle = {
             "height": $window.innerHeight - 13 * $window.innerHeight / 100 + "px"
         };
