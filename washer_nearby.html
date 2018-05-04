@@ -64,7 +64,7 @@
                     <img src="ico/menu-one-item.png" width="25">
                 </md-tab-label>
                 <md-tab-body>
-                    <md-content class="tab-body md-padding" style="height: 475px;">
+                    <md-content ng-style="setStyle" class="tab-body md-padding" style="height: 475px;">
                         <md-list flex="">
                             <md-card ng-repeat="item in washer" class="fabSpeedDial">
                                 <img ng-src="{{item.image}}" class="md-image-no-fill border-radius-15"
@@ -129,7 +129,7 @@
                     <img src="ico/menu-four-item.png" width="25">
                 </md-tab-label>
                 <md-tab-body>
-                    <md-content class="tab-body md-padding" style="height: 475px;">
+                    <md-content ng-style="setStyle" class="tab-body md-padding" style="height: 475px;">
                         <md-card ng-repeat="item in washer" ng-if="$index % 2 == 0" style="height: 320px;">
                             <div class="layout-row">
                                 <div class="col-6" style="padding-left: 0px;padding-right: 10px;">
@@ -176,7 +176,7 @@
                     <img src="ico/maps-pin.png" width="25">
                 </md-tab-label>
                 <md-tab-body>
-                    <md-content class="tab-body md-padding" style="height: 475px;">
+                    <md-content ng-style="setStyle" class="tab-body md-padding" style="height: 475px;">
                         <div id="map"></div>
                     </md-content>
                 </md-tab-body>
@@ -238,11 +238,16 @@
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
     app.controller('AppCtrl', function ($scope) {
 
-        $scope.direction = "up";
-        $(document).ready(function () {
-            $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
-            $scope.direction = $(window).width() < 360 ? "right" : "up";
-        });
+//        $scope.direction = "up";
+//        $(document).ready(function () {
+//        $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
+//        angular.element(document.querySelector("md-content.tab-body"));
+
+        $scope.setStyle = {
+            "height": "calc(" + $(window).height() + "px - 13%)"
+        };
+        $scope.direction = $(window).width() < 360 ? "right" : "up";
+//        });
 //        $(document).resize(function () {
 //            $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
 //            $scope.direction = $(window).width() < 360 ? "right" : "up";
