@@ -238,7 +238,7 @@
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
     app.controller('AppCtrl', function ($scope, $window) {
         //heidht = 511, width = 360 //device Mozilla/5.0 (Linux; Android 5.0; E5653 Build/30.0.A.1.33) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36
-//        $scope.direction = "up";
+        $scope.direction = "right";
 //        $(document).ready(function () {
 //        $("md-content.tab-body").css({"height": "calc(" + $(window).height() + "px - 13%)"});
 //        angular.element(document.querySelector("md-content.tab-body"));
@@ -246,7 +246,7 @@
         $scope.setStyle = {
             "height": $window.innerHeight - 13 * $window.innerHeight / 100 + "px"
         };
-        $scope.direction = $window.innerHeight < 360 ? "right" : "up";
+        $scope.direction = ($window.innerWidth < 361 ? "right" : "up");
 
 //        alert('"height": "calc(' + $(window).height() + 'px - 13%)"  - "width": "' + $(window).width() + '"');
 
