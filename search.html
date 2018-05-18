@@ -11,17 +11,6 @@
     <link rel="apple-touch-icon" href="../src/icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/angular-animate.min.js"></script>
-    <script src="js/lib/angular-aria.min.js"></script>
-    <script src="js/lib/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="js/lib/angular-material.min.js"></script>
-    <!-- Jquery Library-->
-    <script src="js/lib/jquery.min.js"></script>
-    <!-- Bootstrap Library-->
-    <script src="js/lib/bootstrap.min.js"></script>
     <!-- Stylesheet Library -->
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="css/lib/angular-material.min.css">
@@ -30,11 +19,11 @@
 </head>
 <body>
 <!-- Add your site or application content here -->
-<div ng-app="myApp" ng-controller="AppCtrl">
+<div ng-app="SearchApp" ng-controller="SearchCtrl">
     <md-toolbar style="background-color: transparent;">
         <div class="md-toolbar-tools">
             <div class="col-2 width-70 padding-0">
-                <md-button class="md-icon-button md-button md-ink-ripple" ng-click="goGo('start.html')">
+                <md-button class="md-icon-button md-button md-ink-ripple" aria-label="back" ng-click="redirectPage('index.html')">
                     <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: black;"></md-icon>
                 </md-button>
             </div>
@@ -51,19 +40,18 @@
                 <img src="img/logo/magnifyingglass.png">
             </div>
             <md-input-container class="md-block">
-                <input ng-model="user.street" type="text" placeholder="Tên đường">
+                <input ng-model="street" type="text" placeholder="Tên đường">
             </md-input-container>
 
             <md-input-container class="md-block">
-                <input ng-model="user.ward" type="text" placeholder="Tên phường, quận, xã">
+                <input ng-model="ward" type="text" placeholder="Tên phường, quận, xã">
             </md-input-container>
 
             <md-input-container class="md-block">
-                <input ng-model="user.city" type="text" placeholder="Thành phố, tỉnh">
+                <input ng-model="city" type="text" placeholder="Thành phố, tỉnh">
             </md-input-container>
-
             <div layout="column">
-                <md-button class="md-raised md-warn btn-radius" ng-click="goGo('washer_nearby.html')">
+                <md-button class="md-raised md-warn btn-radius" aria-label="search" ng-click="searchSubmit()">
                     TÌM KIẾM
                 </md-button>
             </div>
@@ -74,17 +62,17 @@
             href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a></p>
     </footer>
 </div>
-
-
-<script type="text/javascript">
-
-    var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
-    app.controller('AppCtrl', function ($scope) {
-        $scope.goGo = function (page) {
-            window.location.href = page;
-        };
-    });
-
-</script>
+<script src="./js/lib/angular.min.js"></script>
+<script src="./js/lib/angular-animate.min.js"></script>
+<script src="./js/lib/angular-aria.min.js"></script>
+<script src="./js/lib/angular-messages.min.js"></script>
+<script src="./js/lib/angular-material.min.js"></script>
+<script src="./js/lib/ngStorage.min.js"></script>
+<script src="./js/lib/angular-route.min.js"></script>
+<script src="./js/lib/jquery.min.js"></script>
+<script src="./js/lib/bootstrap.min.js"></script>
+<script src="./js/screen/Search/SearchMain.js"></script>
+<script src="./js/screen/Search/SearchController.js"></script>
+<script src="./js/screen/Search/SearchService.js"></script>
 </body>
 </html>

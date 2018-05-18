@@ -12,16 +12,6 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- Angular Material requires Angular.js Libraries -->
-    <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/angular-animate.min.js"></script>
-    <script src="js/lib/angular-aria.min.js"></script>
-    <script src="js/lib/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="js/lib/angular-material.min.js"></script>
-    <!-- Jquery Library-->
-    <script src="js/lib/jquery.min.js"></script>
-    <!-- Bootstrap Library-->
-    <script src="js/lib/bootstrap.min.js"></script>
     <!-- Stylesheet Library -->
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="css/lib/angular-material.min.css">
@@ -30,11 +20,11 @@
 </head>
 <body>
 <!-- Add your site or application content here -->
-<div ng-app="myApp" ng-controller="AppCtrl">
+<div ng-app="LoginApp" ng-controller="LoginCtrl">
     <md-toolbar style="background-color: transparent;">
         <div class="md-toolbar-tools">
             <div class="col-2 width-70 padding-0">
-                <md-button class="md-icon-button md-button md-ink-ripple" ng-click="goGo('start.html')">
+                <md-button class="md-icon-button md-button md-ink-ripple" ng-click="redirectPage('./start.html')" aria-label="back">
                     <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: black;"></md-icon>
                 </md-button>
             </div>
@@ -51,19 +41,19 @@
                 <h3></h3>
             </div>
             <md-input-container class="md-block">
-                <input ng-model="user.username" type="text" placeholder="Email hoặc số điện thoại">
+                <input ng-model="login.username" type="text" placeholder="Tài khoản">
             </md-input-container>
             <md-input-container class="md-block">
-                <input ng-model="user.password" type="password" placeholder="Mật khẩu">
+                <input ng-model="login.password" type="password" placeholder="Mật khẩu">
             </md-input-container>
             <div class="layout-column">
-                <md-button class="md-raised md-warn btn-radius margin-0" ng-click="goGo('search_washer.html')">Đăng
+                <md-button class="md-raised md-warn btn-radius margin-0" ng-click="loginSubmit()">Đăng
                     nhập
                 </md-button>
             </div>
             <div class="text-center margin-top-15">
                 <md-truncate class="md-block">
-                    Quên mật khẩu? <a href="forgot_password.html">Nhấn vào đây</a>
+                    Quên mật khẩu? <a href="resetPassword.html">Nhấn vào đây</a>
                 </md-truncate>
             </div>
         </div>
@@ -73,16 +63,17 @@
             href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a></p>
     </footer>
 </div>
-
-
-<script type="text/javascript">
-
-    var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
-    app.controller('AppCtrl', function ($scope) {
-        $scope.goGo = function (page) {
-            window.location.href = page;
-        };
-    });
-</script>
+<script src="./js/lib/angular.min.js"></script>
+<script src="./js/lib/angular-animate.min.js"></script>
+<script src="./js/lib/angular-aria.min.js"></script>
+<script src="./js/lib/angular-messages.min.js"></script>
+<script src="./js/lib/angular-material.min.js"></script>
+<script src="./js/lib/ngStorage.min.js"></script>
+<script src="./js/lib/angular-route.min.js"></script>
+<script src="./js/lib/jquery.min.js"></script>
+<script src="./js/lib/bootstrap.min.js"></script>
+<script src="./js/screen/Login/LoginMain.js"></script>
+<script src="./js/screen/Login/LoginController.js"></script>
+<script src="./js/screen/Login/LoginService.js"></script>
 </body>
 </html>
