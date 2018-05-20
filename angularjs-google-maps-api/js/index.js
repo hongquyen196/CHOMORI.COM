@@ -7,12 +7,12 @@ app.service('Map', function($q) {
             center: new google.maps.LatLng(40.7127837, -74.00594130000002),
             zoom: 13,
             disableDefaultUI: true
-        }
+        };
         this.map = new google.maps.Map(
             document.getElementById("map"), options
         );
         this.places = new google.maps.places.PlacesService(this.map);
-    }
+    };
 
     this.search = function(str) {
         var d = $q.defer();
@@ -23,7 +23,7 @@ app.service('Map', function($q) {
             else d.reject(status);
         });
         return d.promise;
-    }
+    };
 
     this.addMarker = function(res) {
         if(this.marker) this.marker.setMap(null);
@@ -46,6 +46,7 @@ app.controller('newPlaceCtrl', function($scope, Map) {
         Map.search($scope.searchPlace)
         .then(
             function(res) { // success
+                console.log(res);
                 Map.addMarker(res);
                 $scope.place.name = res.name;
                 $scope.place.lat = res.geometry.location.lat();
@@ -56,11 +57,12 @@ app.controller('newPlaceCtrl', function($scope, Map) {
                 $scope.apiStatus = status;
             }
         );
-    }
+    };
 
     $scope.send = function() {
         alert($scope.place.name + ' : ' + $scope.place.lat + ', ' + $scope.place.lng);
-    }
+    };
 
     Map.init();
+
 });

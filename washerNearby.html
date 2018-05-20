@@ -44,17 +44,23 @@
         <div class="md-toolbar-tools">
             <div class="col-2 width-70 padding-0">
                 <!--<a href="login.html"><img src="ico/menu-bar-48.png" width="25"></i></a>-->
-                <md-button class="md-icon-button md-button md-ink-ripple hide-gt-sm" ng-click="openNav()">
+                <md-button class="md-icon-button md-button md-ink-ripple" ng-click="openNav()">
                     <img src="ico/menu-bar-48.png" aria-label="menu" width="25">
                 </md-button>
             </div>
-            <div class="col-8 text-center">
-                <md-button class="md-button md-ink-ripple" aria-label="cart"
-                           ng-click="">
-                    <md-icon md-svg-src="svg/cart32.svg" style="width: 35px; height: 35px;"></md-icon>
+            <div ng-if="!isUser" class="col-10">
+
+            </div>
+            <div ng-if="isUser" class="col-5 text-center black padding-0">
+                <small>Xem đơn hàng:</small>
+            </div>
+            <div ng-if="isUser" class="col-3 padding-0">
+                <md-button class="md-icon-button md-button md-ink-ripple" aria-label="cart"
+                           ng-click="redirectPage('./buyerOrder.html')">
+                    <md-icon md-svg-src="svg/cart32.svg" style="/*width: 35px; height: 35px;*/"></md-icon>
                 </md-button>
             </div>
-            <div class="col-2 width-70 padding-0">
+            <div ng-if="isUser" class="col-2 width-70 padding-0">
                 <md-button class="md-icon-button md-button md-ink-ripple" aria-label="search"
                            ng-click="redirectPage('./search.html')">
                     <md-icon md-svg-src="svg/search24.svg" style="fill: #975aa6;"></md-icon>
@@ -255,7 +261,8 @@
 <script src="./js/lib/angular-route.min.js"></script>
 <script src="./js/lib/jquery.min.js"></script>
 <script src="./js/lib/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhhGDyhWo_AVDw8Jze1iVAs8sXxT6FnI"></script>
+<script
+    src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk&libraries=places'></script>
 <script src="./js/screen/WasherNearby/WasherNearbyMain.js"></script>
 <script src="./js/screen/WasherNearby/WasherNearbyController.js"></script>
 <script src="./js/screen/WasherNearby/WasherNearbyService.js"></script>

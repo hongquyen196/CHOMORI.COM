@@ -17,18 +17,39 @@
     <link rel="stylesheet" href="css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
+<style>
+    /* ----------- Non-Retina Screens ----------- */
+    @media screen
+    and (min-device-width: 1200px)
+    and (max-device-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        body {
+            width: 60%;
+            margin: auto;
+        }
+
+        md-card {
+            height: auto !important;
+        }
+
+        .image {
+            height: auto !important;
+        }
+    }
+</style>
 <body id="main-body" class="overflow-hidden">
 <!-- Add your site or application content here -->
 <div ng-app="BuyerOrderApp" ng-controller="BuyerOrderCtrl">
     <md-toolbar style="background-color: transparent;">
         <div class="md-toolbar-tools">
             <div class="col-2 width-70 padding-0">
-                <md-button class="md-icon-button md-button md-ink-ripple" aria-label="back" ng-click="redirectPage('index.html')">
+                <md-button class="md-icon-button md-button md-ink-ripple" aria-label="back"
+                           ng-click="redirectPage('washerNearby.html')">
                     <md-icon md-svg-src="img/icons/arrow_left.svg" style="fill: black;"></md-icon>
                 </md-button>
             </div>
-            <div class="col-8 text-center">
-
+            <div class="col-8 text-center black">
+                <h3>Danh sách đơn hàng</h3>
             </div>
             <div class="col-2 width-70 padding-0">
 
@@ -37,16 +58,32 @@
     </md-toolbar>
     <md-content class="main">
         <md-list>
-            <md-subheader class="md-no-sticky text-center">{{washer.length}} bình luận</md-subheader>
-            <md-list-item class="md-3-line" ng-repeat="item in washer" ng-click="null">
-                <md-divider></md-divider>
-                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.city}}">
-                <div class="md-list-item-text" layout="column">
-                    <h3>{{ item.region }}</h3>
-                    <h3 class="text-danger">{{ item.price }} đ</h3>
-                    <span><i>{{ item.content }}</i></span>
+            <md-subheader class="md-no-sticky text-center">Bạn có tổng cộng {{list_order.length}} đơn hàng
+            </md-subheader>
+            <div class="container" style="overflow: scroll;">
+                <div ng-style="setStyle">
+                    <md-list-item class="md-3-line" ng-repeat="item in list_order | orderBy: '-buy_date'">
+                        <md-divider></md-divider>
+                        <div class="md-list-item-text" layout="column" ng-click="selectOrder(item)">
+                            <h3>Thời gian tạo: {{ item.buy_date }}</h3>
+
+                            <h3 class="text-danger"> Giá thuê: {{ item.buy_price }} đ</h3>
+                    <span ng-if="item.status == 1 && item.buy_status == 1" class="text-success">
+                        <i>Đã giao dịch hoàn tất</i>
+                    </span>
+                    <span ng-if="item.status != 1 && item.buy_status == 2" class="text-info">
+                        <i>Bạn đã hủy đơn hàng này</i>
+                    </span>
+                    <span ng-if="item.status == 1 && item.buy_status == 0">
+                        <i>Đơn hàng được chủ máy xác nhận</i>
+                    </span>
+                    <span ng-if="item.status == 2" class="text-warning">
+                        <i>Đơn hàng đã bị chủ máy từ chối</i>
+                    </span>
+                        </div>
+                    </md-list-item>
                 </div>
-            </md-list-item>
+            </div>
         </md-list>
     </md-content>
     <div id="mySidenav" class="sidenav">

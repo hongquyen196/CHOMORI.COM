@@ -4,28 +4,48 @@
 angular.module('BuyerOrderApp.services', []).factory('BuyerOrderService',
     ["$http", "CONSTANTS", "$q", function ($http, CONSTANTS, $q) {
         var factory = {
-            postData: postData
+            getData: getData
         };
-        var promise;
         return factory;
+        var promise;
+
+        ///**
+        // *
+        // * @param access_token
+        // * @returns {*}
+        // */
+        //function getData(access_token) {
+        //    console.log("#getData start");
+        //    var deferred = $q.defer();
+        //    $http.get(CONSTANTS.urlGet, config(access_token)).then(
+        //        function (response) {
+        //            deferred.resolve(response.data);
+        //        }).catch(function (errResponse) {
+        //            deferred.reject(errResponse);
+        //        });
+        //    console.log("#getData end");
+        //    return deferred.promise;
+        //}
+
         /**
          *
-         * @param object
+         * @param strData
          * @param access_token
          * @returns {*}
          */
-        function postData (object, access_token) {
-            console.log("#postData start");
+        function getData(access_token) {
+            console.log("#getData start");
             var deferred = $q.defer();
-            $http.post(CONSTANTS.urlPost, object, config(access_token)).then(
+            $http.get(CONSTANTS.urlGet, config(access_token)).then(
                 function (response) {
                     deferred.resolve(response.data);
                 }).catch(function (errResponse) {
                     deferred.reject(errResponse);
                 });
-            console.log("#postData end");
+            console.log("#getData end");
             return deferred.promise;
         }
+
 
         /**
          *

@@ -3,82 +3,61 @@
  */
 var moduleController = angular.module('BuyerOrderApp.controllers', []);
 
-moduleController.controller('BuyerOrderCtrl', ['$scope', '$localStorage', '$sessionStorage', '$window', '$mdDialog', 'BuyerOrderService',
-    function ($scope, $localStorage, $sessionStorage, $window, $mdDialog, WasherNearbyService) {
+moduleController.controller('BuyerOrderCtrl', ['$scope', '$localStorage', '$sessionStorage', '$window', '$mdDialog', '$timeout', 'BuyerOrderService',
+    function ($scope, $localStorage, $sessionStorage, $window, $mdDialog, $timeout, BuyerOrderService) {
 
+        $scope.setStyle = {
+            "height": $window.innerHeight - 18 * $window.innerHeight / 100 + "px"
+        };
 
+        console.log($localStorage.access_token);
+        $scope.list_order = [];
 
-        $scope.isOpenNav = false;
-        $scope.openNav = function () {
-            if ($scope.isOpenNav) {
-                document.getElementById("mySidenav").style.width = "200px";
-                $("md-content.main").css({"opacity": "0.3"});
-//                document.body.style.opacity = "0.3";
+        BuyerOrderService.getData($localStorage.access_token).then(function (data) {
+            $scope.list_order = data.data.list_order;
+            //$localStorage.list_order = $scope.list_order;
+        }).catch(function (response) {
+            //console.log('Gists error', response.status, response.data);
+            if (response.status == 403) {
+                $scope.showConfirm("Lỗi lấy dữ liệu", "Bạn không có quyền truy cập chức năng này.");
             } else {
-                document.getElementById("mySidenav").style.width = "0";
-                $("md-content.main").css({"opacity": "unset"});
+                $scope.showAlert("Có lỗi xãy ra.", "");
             }
-            $scope.isOpenNav = !$scope.isOpenNav;
+        });
+
+        $scope.selectOrder = function (item) {
+            if (item.status == 0 && item.buy_status == 0) {
+                $localStorage.buyer_order_id = item.id;
+                $localStorage.seller_order_id = item.seller_order_id;
+                $scope.redirectPage('./comfirm.html');
+            } else {
+                $scope.showAlert("Thông tin đơn hàng", "Thông tin này đã bị ẩn");
+            }
         };
 
 
-        $scope.toggleLeft = buildToggler('left');
-
-        function buildToggler(componentId) {
-            return function () {
-                $mdSidenav(componentId).toggle();
-            };
-        }
-
-
-        var imagePath = '/src/tile.png';
-        $scope.imagePath = "./img/washer/";
-        $scope.messengerPath = "https://www.messenger.com/t/";
-        $scope.list_washer = [];
-        if ($sessionStorage.dataSearched != undefined) {
-            $scope.list_washer = $sessionStorage.dataSearched.data.list_washer;
-            console.log($scope.list_washer)
-        }
-        if ($localStorage.username != undefined) {
-            $scope.user_id = $localStorage.username.substr(4);
-        }
-        $scope.washer = {};
-        $scope.order = {};
-        $scope.showConfirm = function (index) {
+        $scope.showConfirm = function (title, content) {
             var confirm = $mdDialog.confirm()
-                .title('Bạn có chắc chắn muốn thuê và sử dụng máy giặt này không?')
-                .textContent('Khi đồng ý thuê máy giặt, một mới đơn hàng sẽ được tạo trên hệ thống.')
-                .ok('Đồng ý thuê máy này')
+                .title(title)
+                .textContent(content)
+                .ok('Đồng ý')
                 .cancel('Hủy');
             $mdDialog.show(confirm).then(function () {
-                $scope.washer = $scope.list_washer[index];
-                $scope.order = {
-                    "id": $scope.washer.id,
-                    "washer_id": $scope.washer.washer_id,
-                    "buy_price": $scope.washer.sale_price,
-                    "payment_type": 1,
-                    "user_id": $localStorage.username.substr(4)
-                };
-                console.log($scope.order);
-                WasherNearbyService.postData($scope.order, $localStorage.access_token).then(function (data) {
-                    $localStorage.BuyerOrderId = data.data.id;
-                    location.href = "./comfirm.html";
-                }).catch(function (response) {
-                    console.log('Gists error', response.status, response.data);
-                    $scope.showAlert(response.data.meta.message);
-                });
+                $timeout(function () {
+                    $scope.redirectPage('./washerNearby.html');
+                }, 1000);
             }, function () {
                 //
             });
         };
 
-        $scope.showAlert = function(message) {
+        $scope.showAlert = function (title, content) {
             $mdDialog.show(
                 $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))
                     .clickOutsideToClose(true)
-                    .title(message)
-                    .textContent('Bạn đã có đơn hàng trước đó hoặc đơn hàng chưa hoàn tất.')
+                    .title(title)
+                    .textContent(content)
                     .ok('Đồng ý')
             );
         };

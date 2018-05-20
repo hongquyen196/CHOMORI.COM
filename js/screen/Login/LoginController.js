@@ -14,8 +14,9 @@ moduleController.controller('LoginCtrl', ['$scope', '$localStorage', 'LoginServi
                 LoginService.postData($scope.login).then(function (data) {
                     console.log($localStorage.access_token);
                     $localStorage.username = data.data.username;
+                    $localStorage.type = data.data.type;
                     $localStorage.access_token = data.data.access_token;
-                    location.href = "./washerNearby.html";
+                    $scope.redirectPage('./washerNearby.html');
                 }).catch(function (response) {
                     console.log('Gists error', response.status, response.data);
                 });

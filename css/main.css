@@ -210,6 +210,23 @@ md-card.fabSpeedDial {
 .btn-map-marker {
     background-color: #e74c3c !important;
 }
+.btn-ok {
+    height: 45px;
+    margin-right: 4px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.btn-cancel {
+    color: white;
+    background-color: black;
+    height: 45px;
+    margin-left: 4px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+
 
 /*https://freetuts.net/su-dung-media-css-tao-responsive-cho-website-660.html*/
 
