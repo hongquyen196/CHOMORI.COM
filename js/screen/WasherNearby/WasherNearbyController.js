@@ -240,14 +240,14 @@ moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$se
             $scope.addWasher.brand = $scope.myWasher.brand;
             $scope.addWasher.capacity = $scope.myWasher.capacity;
             $scope.addWasher.image_url = "g5.jpg";
-            $scope.addWasher.map_data = JSON.stringify($scope.myWasher.mapData);
+            $scope.addWasher.map_data = $scope.myWasher.mapData;
             $('#washerModal').modal('show');
         };
 
         $scope.editWasherSubmit = function () {
             if ($scope.addWasher) {
                 console.log($scope.addWasher);
-                if ($scope.map_data) $scope.addWasher.map_data = JSON.stringify($scope.map_data);
+                if ($scope.map_data != undefined) $scope.addWasher.map_data = JSON.stringify($scope.map_data);
 
                 WasherNearbyService.updateWasher($scope.addWasher, $localStorage.access_token).then(function (data) {
                     $('#washerModal').modal('hide');

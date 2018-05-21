@@ -29,7 +29,7 @@ moduleController.controller('ComfirmCtrl', ['$scope', '$localStorage', '$window'
                     console.log($scope.seller_order);
                 }).catch(function (response) {
                     console.log('Gists error', response.status, response.data);
-                    $scope.showAlert('Có lỗi xãy ra.', response.data.meta.message);
+                    $scope.showAlert('Có lỗi xãy ra.', "");
                 });
             }
         } else {
@@ -41,7 +41,7 @@ moduleController.controller('ComfirmCtrl', ['$scope', '$localStorage', '$window'
                     console.log($scope.seller_order);
                 }).catch(function (response) {
                     console.log('Gists error', response.status, response.data);
-                    $scope.showAlert('Có lỗi xãy ra.', response.data.meta.message);
+                    $scope.showAlert('Có lỗi xãy ra.', "");
                 });
             }
         }
