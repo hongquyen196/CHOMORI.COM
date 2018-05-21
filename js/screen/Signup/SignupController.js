@@ -21,6 +21,7 @@ moduleController.controller('SignupCtrl', ['$scope', '$localStorage', '$mdDialog
                 SignupService.postData($scope.signup).then(function (data) {
                     console.log($localStorage.access_token);
                     $localStorage.username = data.data.username;
+                    $localStorage.type = data.data.type;
                     $localStorage.access_token = data.data.access_token;
                     $scope.showConfirm("Chào mừng bạn!", "Tên đăng nhập của bạn là: " + $localStorage.username + ". Hãy ghi nhớ tên đăng nhập để có thể đăng nhập sau này.");
                 }).catch(function (response) {
@@ -34,7 +35,7 @@ moduleController.controller('SignupCtrl', ['$scope', '$localStorage', '$mdDialog
             var confirm = $mdDialog.confirm()
                 .title(title)
                 .textContent(content)
-                .ok('Đồng ý')
+                .ok('Đồng ý');
             $mdDialog.show(confirm).then(function () {
                 $timeout(function () {
                     $scope.redirectPage('./washerNearby.html');
