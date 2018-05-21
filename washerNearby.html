@@ -48,19 +48,19 @@
                     <img src="ico/menu-bar-48.png" aria-label="menu" width="25">
                 </md-button>
             </div>
-            <div ng-if="!isUser" class="col-10">
+            <!--<div ng-if="!isUser" class="col-10">-->
 
-            </div>
-            <div ng-if="isUser" class="col-5 text-center black padding-0">
+            <!--</div>-->
+            <div class="col-5 text-center black padding-0">
                 <small>Xem đơn hàng:</small>
             </div>
-            <div ng-if="isUser" class="col-3 padding-0">
+            <div class="col-3 padding-0">
                 <md-button class="md-icon-button md-button md-ink-ripple" aria-label="cart"
                            ng-click="redirectPage('./buyerOrder.html')">
                     <md-icon md-svg-src="svg/cart32.svg" style="/*width: 35px; height: 35px;*/"></md-icon>
                 </md-button>
             </div>
-            <div ng-if="isUser" class="col-2 width-70 padding-0">
+            <div class="col-2 width-70 padding-0">
                 <md-button class="md-icon-button md-button md-ink-ripple" aria-label="search"
                            ng-click="redirectPage('./search.html')">
                     <md-icon md-svg-src="svg/search24.svg" style="fill: #975aa6;"></md-icon>
@@ -117,9 +117,13 @@
                                             <p>{{item.keyword}}</p>
                                         </md-card-title-text>
                                     </md-card-title>
-                                    <md-button class="col-6 col-sm-5 col-md-4 md-raised md-warn btn-radius"
+                                    <md-button ng-if="isUser" class="col-6 col-sm-5 col-md-4 md-raised md-warn btn-radius"
                                                style="text-transform: none;"
                                                ng-click="showConfirm($index)">Chỉ với {{item.sale_price}} đ
+                                    </md-button>
+                                    <md-button ng-if="!isUser" class="col-6 col-sm-5 col-md-4 md-raised md-primary btn-radius"
+                                               style="text-transform: none;"
+                                               ng-click="">Chỉnh sửa
                                     </md-button>
                                 </md-card-actions>
                             </md-card>
@@ -158,10 +162,15 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <div class="text-right margin-8">
-                                        <md-button class="md-raised md-warn btn-radius"
+                                        <md-button ng-if="isUser" class="md-raised md-warn btn-radius"
                                                    style="text-transform: none; font-size: 12px; margin: 0px; float: right;"
                                                    ng-click="showConfirm($index)">
                                             Chỉ với {{list_washer[$index].sale_price}} đ
+                                        </md-button>
+                                        <md-button ng-if="!isUser" class="md-raised md-primary btn-radius"
+                                                   style="text-transform: none; font-size: 12px; margin: 0px; float: right;"
+                                                   ng-click="">
+                                            Chỉnh sửa
                                         </md-button>
                                     </div>
                                 </div>
@@ -179,10 +188,15 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <div class="text-right margin-8">
-                                        <md-button class="md-raised md-warn btn-radius"
+                                        <md-button ng-if="isUser" class="md-raised md-warn btn-radius"
                                                    style="text-transform: none; font-size: 12px; margin: 0px; margin-top: 0px;"
                                                    ng-click="showConfirm($index+1)">
                                             Chỉ với {{list_washer[$index+1].sale_price}} đ
+                                        </md-button>
+                                        <md-button ng-if="!isUser" class="md-raised md-primary btn-radius"
+                                                   style="text-transform: none; font-size: 12px; margin: 0px; float: right;"
+                                                   ng-click="">
+                                            Chỉnh sửa
                                         </md-button>
                                     </div>
                                 </div>
@@ -198,16 +212,14 @@
                 <md-tab-body>
                     <md-content ng-style="setStyle" class="tab-body">
                         <div id="map"></div>
-                    </md-content>
+                    </md-content>x
                 </md-tab-body>
             </md-tab>
         </md-tabs>
     </md-content>
     <div id="mySidenav" class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <!--<a href="#">Cập nhật thông tin cá nhân</a>-->
+        <a href="./index.html">Đăng xuất</a>
     </div>
     <!--<section layout="row" flex>-->
 
@@ -251,6 +263,76 @@
     <!--<footer class="text-center">-->
     <!--<p class="margin-8">Made with all <i aria-hidden="true" class="fa fa-heart" style="color:#d55"></i> by <a href="https://www.facebook.com/hongquyen196" target="_blank" title="Lê Hồng Quyền">LHQ</a></p>-->
     <!--</footer>-->
+    <!-- Modal -->
+    <div class="modal fade" id="washerModal" role="dialog">
+        <div class="modal-dialog modal-lg" style="height: 400px;">
+            <div class="modal-content" style="height: 100%">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm máy giặt</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <md-input-container class="md-block">
+                        <input ng-model="addWasher.brand" name="brand" type="text" placeholder="Nhãn hiệu của máy"
+                               maxlength="45" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-block ">
+                        <input ng-model="addWasher.capacity" name="capacity" type="text" placeholder="Sức chứa của máy" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <md-button class="md-raised md-primary btn-radius" style="text-transform: none; font-size: 16px;" ng-click="getLocation()">
+                            Xác định vị trí
+                        </md-button>
+                    </md-input-container>
+
+                </div>
+                <div class="modal-footer">
+                    <md-button class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addWasherSubmit()">
+                        Thêm máy
+                    </md-button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="orderModal" role="dialog">
+        <div class="modal-dialog modal-lg" style="height: 500px;">
+            <div class="modal-content" style="height: 100%">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tạo đơn hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" ng-click="saveDataTemp()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <md-input-container class="md-block">
+                        <input ng-model="sellerOrder.sale_price" name="sale_price" type="number" placeholder="Giá cho thuê"
+                               maxlength="45" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-block ">
+                        <input ng-model="sellerOrder.street" name="street" type="text" placeholder="Tên đường" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-block ">
+                        <input ng-model="sellerOrder.ward" name="ward" type="text" placeholder="Tên phường, thị trấn" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-block ">
+                        <input ng-model="sellerOrder.city" name="city" type="text" placeholder="Tên thành phố, tỉnh" required>
+                    </md-input-container>
+                </div>
+                <div class="modal-footer">
+                    <md-button class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addOrderSubmit()">
+                        Tạo đơn hàng
+                    </md-button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveDataTemp()">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="./js/lib/angular.min.js"></script>
 <script src="./js/lib/angular-animate.min.js"></script>

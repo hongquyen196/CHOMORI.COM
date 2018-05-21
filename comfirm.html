@@ -34,8 +34,8 @@
 
     <md-content class="main" style="overflow: scroll">
         <div class="text-right" style="padding-right: 17px; color: rgb(255,87,34)">{{ seller_order.sale_price }} đ</div>
-        <div class="container-fluid width-300" ng-style="setStyle">
-            <div><img src="./img/washer/g1.jpg" width="280" height="280" style="border-radius: 50%;"></div>
+        <div class="container-fluid" ng-style="setStyle">
+            <div class="text-center"><img src="./img/washer/g1.jpg" width="280" height="280" style="border-radius: 50%;"></div>
 
             <div class="margin-top-15 text-center">
                 <md-button class="md-icon-button btn-map-marker" aria-label="marker" data-toggle="modal"
@@ -50,13 +50,22 @@
                     <md-icon md-svg-src="svg/phone.svg" style="color: white;"></md-icon>
                 </md-button>
             </div>
-            <div class="margin-top-15 text-center">
+            <div ng-if="seller_order.user_info.address" class="margin-top-15 text-center">
                 <p>Địa chỉ của chủ máy: {{ seller_order.user_info.address }}</p>
             </div>
-            <div class="text-center margin-top-15">
+            <div ng-if="isUser" class="text-center margin-top-15">
                 <md-button ng-click="okCancelSubmit(1)" class="btn-ok md-raised md-warn md-ink-ripple">Xác nhận đã giặt
                 </md-button>
                 <md-button ng-click="okCancelSubmit(0)" class="btn-cancel md-ink-ripple">Hủy</md-button>
+            </div>
+            <div ng-if="!isUser && seller_order.sale_status == 1" class="text-center margin-top-15">
+                <md-button ng-click="okDoneSubmit()" class="btn-radius md-raised md-primary md-ink-ripple">Xác nhận giao dịch hoàn tất
+                </md-button>
+            </div>
+            <div ng-if="!isUser && seller_order.sale_status == 0" class="text-center margin-top-15">
+                <md-button ng-click="okCancelSubmit(1)" class="btn-ok md-raised md-primary md-ink-ripple">Xác nhận cho giặt
+                </md-button>
+                <md-button ng-click="okCancelSubmit(0)" class="btn-cancel md-ink-ripple">Từ chối</md-button>
             </div>
         </div>
 

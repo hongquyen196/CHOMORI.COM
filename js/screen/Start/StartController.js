@@ -3,12 +3,10 @@
  */
 var moduleController = angular.module('StartApp.controllers', []);
 
-moduleController.controller('StartCtrl', ['$scope', '$localStorage', 'StartService',
-    function ($scope, $localStorage, StartService) {
-        //if($localStorage.access_token != undefined) {
-        //    location.href = "./washerNearby.html";
-        //}
+moduleController.controller('StartCtrl', ['$scope', '$localStorage', '$window', 'StartService',
+    function ($scope, $localStorage, $window, StartService) {
 
+        $window.localStorage.clear();
         $scope.redirectPage = function (redirectUrl) {
             location.href = redirectUrl;
         }

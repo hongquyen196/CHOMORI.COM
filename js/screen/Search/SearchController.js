@@ -18,6 +18,8 @@ moduleController.controller('SearchCtrl', ['$scope', '$localStorage', '$mdDialog
                 }).catch(function (response) {
                     if (response.status == 403) {
                         $scope.showConfirm("Lỗi tìm kiếm", "Bạn không có quyền truy cập chức năng này.");
+                    } else {
+                        $scope.showAlert("", response.data.meta.message);
                     }
                 });
             }
@@ -36,6 +38,17 @@ moduleController.controller('SearchCtrl', ['$scope', '$localStorage', '$mdDialog
             }, function () {
                 //
             });
+        };
+
+        $scope.showAlert = function (message, content) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title(message)
+                    .textContent(content)
+                    .ok('Đồng ý')
+            );
         };
 
         $scope.redirectPage = function (redirectUrl) {

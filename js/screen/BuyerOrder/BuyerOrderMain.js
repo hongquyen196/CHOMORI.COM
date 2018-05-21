@@ -4,5 +4,6 @@
 'use strict';
 var module = angular.module('BuyerOrderApp', ['BuyerOrderApp.controllers', 'BuyerOrderApp.services', 'ngStorage','ngRoute', 'ngMaterial','ngMessages']);
 module.constant("CONSTANTS", {
-    urlGet: "https://localhost:8080/api/buyer/getBuyerOrder"
+    urlGet: "https://localhost:8080/api/buyer/getBuyerOrder",
+    urlGetBuyerOrder: "https://localhost:8080/api/seller/getBuyerOrder"
 });

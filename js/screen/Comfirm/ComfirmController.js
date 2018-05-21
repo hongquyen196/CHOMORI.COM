@@ -5,6 +5,7 @@ var moduleController = angular.module('ComfirmApp.controllers', []);
 var isDlgOpen;
 moduleController.controller('ComfirmCtrl', ['$scope', '$localStorage', '$window', '$mdDialog', '$timeout', 'ComfirmService',
     function ($scope, $localStorage, $window, $mdDialog, $timeout, ComfirmService) {
+        $scope.isUser = $localStorage.type == 0 ? true : false;
         $scope.setStyle = {
             "height": $window.innerHeight - 20 * $window.innerHeight / 100 + "px"
         };
@@ -19,30 +20,75 @@ moduleController.controller('ComfirmCtrl', ['$scope', '$localStorage', '$window'
         //}
         $scope.seller_order = {};
         $scope.map_data = {};
-        if ($localStorage.seller_order_id != undefined) {
-            ComfirmService.getData($localStorage.seller_order_id, $localStorage.access_token).then(function (data) {
-                $scope.seller_order = data.data;
-                $scope.map_data = JSON.parse($scope.seller_order.user_info.map_data);
-                $scope.seller_order.image = $scope.imagePath + $scope.seller_order.image;
-                console.log($scope.seller_order);
-            }).catch(function (response) {
-                console.log('Gists error', response.status, response.data);
-                $scope.showAlert('Có lỗi xãy ra.', response.data.meta.message);
-            });
+        if ($scope.isUser) {
+            if ($localStorage.seller_order_id != undefined) {
+                ComfirmService.getData($localStorage.seller_order_id, $localStorage.access_token).then(function (data) {
+                    $scope.seller_order = data.data;
+                    $scope.map_data = JSON.parse($scope.seller_order.user_info.map_data);
+                    $scope.seller_order.image = $scope.imagePath + $scope.seller_order.image;
+                    console.log($scope.seller_order);
+                }).catch(function (response) {
+                    console.log('Gists error', response.status, response.data);
+                    $scope.showAlert('Có lỗi xãy ra.', response.data.meta.message);
+                });
+            }
+        } else {
+            if ($localStorage.seller_order_id != undefined) {
+                ComfirmService.getSellerOrder($localStorage.seller_order_id, $localStorage.access_token).then(function (data) {
+                    $scope.seller_order = data.data;
+                    $scope.map_data = JSON.parse($scope.seller_order.user_info.map_data);
+                    $scope.seller_order.image = $scope.imagePath + $scope.seller_order.image;
+                    console.log($scope.seller_order);
+                }).catch(function (response) {
+                    console.log('Gists error', response.status, response.data);
+                    $scope.showAlert('Có lỗi xãy ra.', response.data.meta.message);
+                });
+            }
         }
 
         $scope.okCancelSubmit = function (flag) {
-            var comfirm = {
-                "id": $localStorage.buyer_order_id,
-                "comfirm_flag": flag
-            };
-            console.log(comfirm);
-            ComfirmService.putData(comfirm, $localStorage.access_token).then(function (data) {
-                $scope.showConfirm(data.meta.code, data.meta.message);
-            }).catch(function (response) {
-                console.log('Gists error', response.status, response.data);
-                $scope.showAlert(response.data.meta.code, response.data.meta.message);
-            });
+            if ($scope.isUser) {
+                var comfirm = {
+                    "id": $localStorage.buyer_order_id,
+                    "comfirm_flag": flag
+                };
+                console.log(comfirm);
+                ComfirmService.putData(comfirm, $localStorage.access_token).then(function (data) {
+                    $scope.showConfirm(data.meta.code, data.meta.message);
+                }).catch(function (response) {
+                    console.log('Gists error', response.status, response.data);
+                    $scope.showAlert(response.data.meta.code, response.data.meta.message);
+                });
+            } else {
+                var comfirm = {
+                    "id": $localStorage.buyer_order_id,
+                    "seller_order_id": $localStorage.seller_order_id,
+                    "comfirm_flag": flag
+                };
+                console.log(comfirm);
+                ComfirmService.sellerComfirm(comfirm, $localStorage.access_token).then(function (data) {
+                    $scope.showConfirm(data.meta.code, data.meta.message);
+                }).catch(function (response) {
+                    console.log('Gists error', response.status, response.data);
+                    $scope.showAlert(response.data.meta.code, response.data.meta.message);
+                });
+            }
+        };
+
+        $scope.okDoneSubmit = function () {
+            if (!$scope.isUser) {
+                var comfirm = {
+                    "id": $localStorage.buyer_order_id,
+                    "seller_order_id": $localStorage.seller_order_id,
+                };
+                console.log(comfirm);
+                ComfirmService.sellerComfirmDone(comfirm, $localStorage.access_token).then(function (data) {
+                    $scope.showConfirm(data.meta.code, data.meta.message);
+                }).catch(function (response) {
+                    console.log('Gists error', response.status, response.data);
+                    $scope.showAlert(response.data.meta.code, response.data.meta.message);
+                });
+            }
         };
 
 
@@ -79,6 +125,7 @@ moduleController.controller('ComfirmCtrl', ['$scope', '$localStorage', '$window'
             ComfirmService.init();
             ComfirmService.addMarkerCustom($scope.map_data);
         });
+
 
         $scope.redirectPage = function (redirectUrl) {
             location.href = redirectUrl;

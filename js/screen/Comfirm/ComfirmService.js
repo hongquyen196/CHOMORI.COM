@@ -6,6 +6,9 @@ angular.module('ComfirmApp.services', []).factory('ComfirmService',
         var factory = {
             getData: getData,
             putData: putData,
+            getSellerOrder: getSellerOrder,
+            sellerComfirm: sellerComfirm,
+            sellerComfirmDone: sellerComfirmDone,
             init: init,
             search: search,
             addMarker: addMarker,
@@ -61,6 +64,20 @@ angular.module('ComfirmApp.services', []).factory('ComfirmService',
 
         var promise;
 
+
+        function getSellerOrder(strData, access_token) {
+            console.log("#getData start");
+            var deferred = $q.defer();
+            $http.get(CONSTANTS.urlGetSellerOrder + strData, config(access_token)).then(
+                function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function (errResponse) {
+                    deferred.reject(errResponse);
+                });
+            console.log("#getData end");
+            return deferred.promise;
+        }
+
         /**
          *
          * @param strData
@@ -99,6 +116,32 @@ angular.module('ComfirmApp.services', []).factory('ComfirmService',
             return deferred.promise;
         }
 
+        function sellerComfirm(object, access_token) {
+            console.log("#putData start");
+            var deferred = $q.defer();
+            $http.put(CONSTANTS.urlSellerComfirm, object, config(access_token)).then(
+                function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function (errResponse) {
+                    deferred.reject(errResponse);
+                });
+            console.log("#putData end");
+            return deferred.promise;
+        }
+
+
+        function sellerComfirmDone(object, access_token) {
+            console.log("#putData start");
+            var deferred = $q.defer();
+            $http.put(CONSTANTS.urlSellerComfirmDone, object, config(access_token)).then(
+                function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function (errResponse) {
+                    deferred.reject(errResponse);
+                });
+            console.log("#putData end");
+            return deferred.promise;
+        }
 
         /**
          *
