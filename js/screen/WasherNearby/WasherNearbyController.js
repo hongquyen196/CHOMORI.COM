@@ -4,6 +4,7 @@
 var moduleController = angular.module('WasherNearbyApp.controllers', []);
 moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$sessionStorage', '$window', '$mdDialog', 'WasherNearbyService',
     function ($scope, $localStorage, $sessionStorage, $window, $mdDialog, WasherNearbyService) {
+        $scope.edit = false;
         $scope.isUser = $localStorage.type == 0 ? true : false;
         $scope.setStyle = {
             "height": $window.innerHeight - 13 * $window.innerHeight / 100 + "px"
@@ -42,7 +43,7 @@ moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$se
             );
         };
 
-
+        $scope.myWasher = undefined;
         $scope.list_washer = [];
         if ($scope.isUser) {
             if ($localStorage.data_searched != undefined) {
@@ -55,6 +56,7 @@ moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$se
         }
         else { //admin
             WasherNearbyService.getMyWasher($localStorage.access_token).then(function (data) {
+                $scope.myWasher = data.data;
                 $localStorage.washer_id = data.data.washerId;
                 WasherNearbyService.getMySellerOrder($localStorage.access_token).then(function (data) {
                     if (data.data.data_count == 0) {
@@ -92,13 +94,12 @@ moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$se
         }
 
         $scope.initialize = function () {
-            var location = undefined;
+            var location = {};
             if ($scope.list_washer.length > 0) {
                 location = JSON.parse($scope.list_washer[0].map_data);
-            }
-            if (location == undefined) {
-                location.lat = 16.4581519;
-                location.lng = 107.5961825;
+            } else {
+                location.lat = "16.4581519";
+                location.lng = "107.5961825";
             }
 
             $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -230,6 +231,43 @@ moduleController.controller('WasherNearbyCtrl', ['$scope', '$localStorage', '$se
             $localStorage.sellerOrderTemp = $scope.sellerOrder;
         };
 
+
+        $scope.addWasher = {};
+
+        $scope.showPopupEdit = function () {
+            $scope.edit = true;
+            $scope.addWasher.washer_id = $scope.myWasher.washerId;
+            $scope.addWasher.brand = $scope.myWasher.brand;
+            $scope.addWasher.capacity = $scope.myWasher.capacity;
+            $scope.addWasher.image_url = "g5.jpg";
+            $scope.addWasher.map_data = JSON.stringify($scope.myWasher.mapData);
+            $('#washerModal').modal('show');
+        };
+
+        $scope.editWasherSubmit = function () {
+            if ($scope.addWasher) {
+                console.log($scope.addWasher);
+                if ($scope.map_data) $scope.addWasher.map_data = JSON.stringify($scope.map_data);
+
+                WasherNearbyService.updateWasher($scope.addWasher, $localStorage.access_token).then(function (data) {
+                    $('#washerModal').modal('hide');
+                    $('#orderModal').modal('show');
+                }).catch(function (response) {
+                    if (response.status == 403) {
+                        $('#washerModal').modal('hide');
+                        $scope.showAlert("Lỗi cập nhật máy", "Bạn không có quyền truy cập chức năng này.");
+                    } else if (response.status == 400) {
+                        alert(response.data.meta.message);
+                    }
+                });
+            }
+            $scope.edit = true;
+        };
+
+        $scope.editMyOrderSubmit = function () {
+            alert("Chức năng này chưa khả dụng");
+            $scope.edit = false;
+        };
 
 
 

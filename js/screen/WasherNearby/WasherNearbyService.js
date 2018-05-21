@@ -8,7 +8,8 @@ angular.module('WasherNearbyApp.services', []).factory('WasherNearbyService',
             createOrder: createOrder,
             createWasher: createWasher,
             getMySellerOrder: getMySellerOrder,
-            getMyWasher: getMyWasher
+            getMyWasher: getMyWasher,
+            updateWasher: updateWasher
 
         };
         var promise;
@@ -55,6 +56,19 @@ angular.module('WasherNearbyApp.services', []).factory('WasherNearbyService',
             console.log("#createWasher start");
             var deferred = $q.defer();
             $http.post(CONSTANTS.urlCreateWasher, object, config(access_token)).then(
+                function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function (errResponse) {
+                    deferred.reject(errResponse);
+                });
+            console.log("#createWasher end");
+            return deferred.promise;
+        }
+
+        function updateWasher (object, access_token) {
+            console.log("#createWasher start");
+            var deferred = $q.defer();
+            $http.put(CONSTANTS.urlUpdateWasher, object, config(access_token)).then(
                 function (response) {
                     deferred.resolve(response.data);
                 }).catch(function (errResponse) {

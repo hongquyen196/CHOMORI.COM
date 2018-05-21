@@ -123,7 +123,7 @@
                                     </md-button>
                                     <md-button ng-if="!isUser" class="col-6 col-sm-5 col-md-4 md-raised md-primary btn-radius"
                                                style="text-transform: none;"
-                                               ng-click="">Chỉnh sửa
+                                               ng-click="showPopupEdit($index)">Chỉnh sửa
                                     </md-button>
                                 </md-card-actions>
                             </md-card>
@@ -169,7 +169,7 @@
                                         </md-button>
                                         <md-button ng-if="!isUser" class="md-raised md-primary btn-radius"
                                                    style="text-transform: none; font-size: 12px; margin: 0px; float: right;"
-                                                   ng-click="">
+                                                   ng-click="showPopupEdit($index)">
                                             Chỉnh sửa
                                         </md-button>
                                     </div>
@@ -195,7 +195,7 @@
                                         </md-button>
                                         <md-button ng-if="!isUser" class="md-raised md-primary btn-radius"
                                                    style="text-transform: none; font-size: 12px; margin: 0px; float: right;"
-                                                   ng-click="">
+                                                   ng-click="showPopupEdit($index+1)">
                                             Chỉnh sửa
                                         </md-button>
                                     </div>
@@ -268,7 +268,7 @@
         <div class="modal-dialog modal-lg" style="height: 400px;">
             <div class="modal-content" style="height: 100%">
                 <div class="modal-header">
-                    <h4 class="modal-title">Thêm máy giặt</h4>
+                    <h4 class="modal-title">{{ edit ? 'Cập nhật' : 'Thêm'}} máy giặt</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -289,8 +289,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <md-button class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addWasherSubmit()">
+                    <md-button ng-if="!edit" class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addWasherSubmit()">
                         Thêm máy
+                    </md-button>
+                    <md-button ng-if="edit" class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="editWasherSubmit()">
+                        Cập nhật máy
                     </md-button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
@@ -303,7 +306,7 @@
         <div class="modal-dialog modal-lg" style="height: 500px;">
             <div class="modal-content" style="height: 100%">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tạo đơn hàng</h4>
+                    <h4 class="modal-title">{{ edit ? 'Cập nhật' : 'Tạo'}} đơn hàng</h4>
                     <button type="button" class="close" data-dismiss="modal" ng-click="saveDataTemp()">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -325,8 +328,11 @@
                     </md-input-container>
                 </div>
                 <div class="modal-footer">
-                    <md-button class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addOrderSubmit()">
+                    <md-button ng-if="!edit" class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="addOrderSubmit()">
                         Tạo đơn hàng
+                    </md-button>
+                    <md-button ng-if="edit" class="md-raised md-warn btn-radius" style="text-transform: none; font-size: 16px;" ng-click="editMyOrderSubmit()">
+                        Cập nhật máy
                     </md-button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveDataTemp()">Đóng</button>
                 </div>

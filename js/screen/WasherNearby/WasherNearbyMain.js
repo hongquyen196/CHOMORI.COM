@@ -8,5 +8,7 @@ module.constant("CONSTANTS", {
     urlCreateOrder: "https://localhost:8080/api/seller/createOrder",
     urlCreateWasher: "https://localhost:8080/api/seller/createWasher",
     urlGetMySellerOrder: "https://localhost:8080/api/seller/getMySellerOrder",
-    urlGetMyWasher: "https://localhost:8080/api/seller/getMyWasher"
+    urlGetMyWasher: "https://localhost:8080/api/seller/getMyWasher",
+    urlUpdateWasher: "https://localhost:8080/api/seller/updateWasher"
+
 });
